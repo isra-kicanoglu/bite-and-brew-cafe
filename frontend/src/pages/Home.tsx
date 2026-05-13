@@ -23,12 +23,11 @@ const Home: React.FC = () => {
     caramel:   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5yovUHhG2rFJES4xSlgu8FGSjb9xOdmYcOg&s"
   };
 
-  const favoriteItems = [
-    { id: 1, name: "Caramel Macchiato", desc: "Perfect harmony of caramel and vanilla syrups.", price: "95 TL", img: "https://www.theendlessmeal.com/wp-content/uploads/2025/03/Caramel-Macchiato-Recipe-2.jpg" },
-    { id: 2, name: "Iced White Mocha", desc: "Signature espresso with white chocolate sauce.", price: "105 TL", img: "https://cloveandcumin.com/wp-content/uploads/2024/04/Iced-White-Chocolate-Mocha.jpg" },
-    { id: 3, name: "San Sebastian", desc: "Creamy Spanish cheesecake with a burnt top.", price: "140 TL", img: "https://www.hacibekirkunc.com/upload/san-sebastian-cheesecake-1-12143.jpg" }
+ const favoriteItems = [
+    { id: 1, name: "Caramel Macchiato", desc: "Perfect harmony of caramel and vanilla syrups.", price: "$4.50", img: "https://www.theendlessmeal.com/wp-content/uploads/2025/03/Caramel-Macchiato-Recipe-2.jpg" },
+    { id: 2, name: "Iced White Mocha", desc: "Signature espresso with white chocolate sauce.", price: "$5.25", img: "https://cloveandcumin.com/wp-content/uploads/2024/04/Iced-White-Chocolate-Mocha.jpg" },
+    { id: 3, name: "San Sebastian", desc: "Creamy Spanish cheesecake with a burnt top.", price: "$6.00", img: "https://www.hacibekirkunc.com/upload/san-sebastian-cheesecake-1-12143.jpg" }
   ];
-
   const testimonials = [
     { id: 1, name: "Jessica Lane", text: "The loyalty program is a game changer. My 7th cup was totally free!", rating: 5 },
     { id: 2, name: "David Chen", text: "Best Iced White Mocha in town. Highly recommended!", rating: 5 },
