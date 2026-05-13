@@ -4,6 +4,8 @@ export interface Product {
   price: number;
   category: string;
   description: string;
+  imageUrl?: string; 
+  hasMilkOption?: boolean; 
 }
 
 export interface AppContextType {

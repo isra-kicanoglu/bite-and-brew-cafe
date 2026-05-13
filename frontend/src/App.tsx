@@ -3,9 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
+import Menu from './pages/Menu';
+import Checkout from './pages/Checkout';
 
-// Sayfaları birazdan oluşturacağız, şimdilik yer tutucu koyalım
-const Placeholder = ({ title }: { title: string }) => <div className="container mt-5 text-center"><h2>{title} Yapım Aşamasında</h2></div>;
+// Arkadaşın diğer sayfaları yapana kadar ekranda duracak geçici tutucu
+const Placeholder = ({ title }: { title: string }) => (
+  <div className="container mt-5 text-center">
+    <h2>{title} Yapım Aşamasında 🚧</h2>
+  </div>
+);
 
 const App: React.FC = () => {
   return (
@@ -14,11 +20,14 @@ const App: React.FC = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Placeholder title="Ana Sayfa" />} />
-          <Route path="/menu" element={<Placeholder title="Menü" />} />
+          
+          {/* Gerçek sayfalarımızı buraya bağladık! */}
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/checkout" element={<Checkout />} />
+          
           <Route path="/dashboard" element={<Placeholder title="Dashboard" />} />
           <Route path="/login" element={<Placeholder title="Giriş / Kayıt" />} />
           <Route path="/register" element={<Placeholder title="Giriş / Kayıt" />} />
-          <Route path="/checkout" element={<Placeholder title="Ödeme" />} />
         </Routes>
       </Router>
     </AppProvider>
