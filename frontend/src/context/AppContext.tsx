@@ -7,6 +7,7 @@ export interface Product {
   category: string;
   description: string;
   image?: string;
+  hasMilkOption?: boolean; // Menu için gerekli
 }
 
 export interface AppContextType {
@@ -16,9 +17,10 @@ export interface AppContextType {
   login: (name: string) => void;
   logout: () => void;
   addToCart: (item: Product) => void;
+  removeFromCart: (name: string) => void; // YENİ: Tekli silme
   clearCart: () => void;
   setStamps: (stamps: number) => void;
-  addStamp: () => void; // Hata veren eksik fonksiyonu buraya ekledik
+  addStamp: () => void;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -35,26 +37,31 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   }, [user, stamps]);
 
   const login = (name: string) => setUser(name);
-  const logout = () => {
-    setUser(null);
-    setStamps(0);
-    localStorage.clear();
+  const logout = () => { setUser(null); setStamps(0); localStorage.clear(); };
+  
+  const addToCart = (item: Product) => setCart((prev) => [...prev, item]);
+
+  // YENİ: Sepetten aynı isimli ürünün sadece ilkini siler
+  const removeFromCart = (name: string) => {
+    setCart((prev) => {
+      const index = prev.findIndex(item => item.name === name);
+      if (index !== -1) {
+        const newCart = [...prev];
+        newCart.splice(index, 1);
+        return newCart;
+      }
+      return prev;
+    });
   };
 
-  const addToCart = (item: Product) => setCart((prev) => [...prev, item]);
   const clearCart = () => setCart([]);
-  
-  // Bu fonksiyon Menu sayfasındaki hatayı engeller. 
-  // İçini boş bıraktık ki "sepete ekleyince pul artmasın" kuralın bozulmasın.
-  const addStamp = () => {
-    console.log("Stamp addition skipped (only allowed at checkout).");
-  };
+  const addStamp = () => { console.log("Stamp addition logic triggered"); };
 
   return (
     <AppContext.Provider value={{ 
       user, login, logout, 
-      cart, addToCart, clearCart, 
-      stamps, setStamps, addStamp // addStamp artık Context'te var!
+      cart, addToCart, removeFromCart, clearCart, 
+      stamps, setStamps, addStamp 
     }}>
       {children}
     </AppContext.Provider>
