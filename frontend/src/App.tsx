@@ -2,10 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppProvider } from './context/AppContext';
-import Navbar from './components/Navbar';
 
-// Sayfaları birazdan oluşturacağız, şimdilik yer tutucu koyalım
-const Placeholder = ({ title }: { title: string }) => <div className="container mt-5 text-center"><h2>{title} Yapım Aşamasında</h2></div>;
+// Bileşenleri ve Sayfaları içeri aktarıyoruz
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import { AuthPage } from './pages/Auth';
+import Dashboard from './pages/Dashboard';
+// Menu sayfası birazdan eklenecek, şimdilik placeholder kullanıyoruz
+
+const Placeholder = ({ title }: { title: string }) => (
+  <div className="container mt-5 text-center">
+    <h2>{title} - Under Construction 🚧</h2>
+  </div>
+);
 
 const App: React.FC = () => {
   return (
@@ -13,12 +22,14 @@ const App: React.FC = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Placeholder title="Ana Sayfa" />} />
-          <Route path="/menu" element={<Placeholder title="Menü" />} />
-          <Route path="/dashboard" element={<Placeholder title="Dashboard" />} />
-          <Route path="/login" element={<Placeholder title="Giriş / Kayıt" />} />
-          <Route path="/register" element={<Placeholder title="Giriş / Kayıt" />} />
-          <Route path="/checkout" element={<Placeholder title="Ödeme" />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/register" element={<AuthPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          
+          <Route path="/menu" element={<Placeholder title="Menu" />} />
+          <Route path="/checkout" element={<Placeholder title="Checkout" />} />
+          <Route path="/abouts" element={<Placeholder title="About Us" />} />
         </Routes>
       </Router>
     </AppProvider>

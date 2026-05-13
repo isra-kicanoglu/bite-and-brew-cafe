@@ -1,0 +1,192 @@
+/* --- GLOBAL VARIABLES --- */
+:root {
+  --bg-creme: #fefcf5;
+  --bg-creme-dark: #fcf4e8;
+  --text-brown: #3e1b12;
+  --text-brown-light: #ab6649;
+  --bg-brown: #4d2319;
+  --cake-pink: #fbe6ec;
+  --cake-orange: #fcedda;
+  --cake-purple: #ebddef;
+  --text-creme: #fdfaf0;
+  --text-creme-light: #fffcf7;
+}
+
+/* --- BASE STYLES --- */
+.home-container {
+  overflow-x: hidden;
+}
+
+.el-yazisi {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.bg-creme { background-color: var(--bg-creme) !important; }
+.bg-creme-dark { background-color: var(--bg-creme-dark) !important; }
+
+/* --- BUTTONS --- */
+.btn-brown {
+  background-color: var(--text-brown) !important;
+  color: var(--text-creme) !important;
+  border-color: var(--text-brown) !important;
+  transition: 0.3s;
+}
+
+.btn-brown:hover {
+  background-color: var(--bg-brown) !important;
+  color: #ffc107 !important;
+}
+
+.btn-brown-light {
+  background-color: var(--text-brown-light) !important;
+  color: var(--text-creme) !important;
+  border-color: var(--text-brown-light) !important;
+}
+
+/* Transitions for dynamic button */
+.transition-all {
+  transition: all 0.4s ease;
+}
+
+/* --- NAVBAR --- */
+.navbar-creme {
+  background-color: var(--bg-creme) !important;
+}
+
+/* --- CARDS & DECORATIONS --- */
+.bg-cake-pink { background-color: var(--cake-pink) !important; }
+.bg-cake-orange { background-color: var(--cake-orange) !important; }
+.bg-cake-purple { background-color: var(--cake-purple) !important; }
+
+.cake-card-img {
+  max-height: 180px;
+}
+
+/* --- LOYALTY CARD (3x2 GRID FIXED) --- */
+.loyalty-card-visual {
+  border: 8px solid var(--text-brown);
+  transform: rotate(-2deg);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--bg-creme);
+}
+
+.loyalty-card-visual:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.loyalty-card-inner {
+  border: 2px dashed rgba(171, 102, 73, 0.4); 
+}
+
+.stamp-box {
+  width: 65px; 
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.border-brown-dashed {
+  border-top: 2px dashed rgba(171, 102, 73, 0.3) !important;
+}
+
+/* --- TESTIMONIALS --- */
+.testimonial-card {
+  transition: 0.3s ease;
+  border-left: 4px solid transparent !important;
+  background: white;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  border-left-color: #ffc107 !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+}
+
+/* --- NEWSLETTER SECTION (FIXED FOR INLINE) --- */
+.newsletter-section {
+  background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.max-width-600 {
+  max-width: 600px;
+}
+
+.newsletter-form {
+    display: flex !important;
+    flex-direction: row !important; /* Yan yana */
+    flex-wrap: nowrap !important;  /* Alt alta binmeyi engeller */
+    background: white;
+    border-radius: 50px;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.newsletter-input {
+    background: transparent !important;
+    border: none !important;
+    padding-left: 20px !important;
+    flex: 1;
+    min-width: 0;
+}
+
+.newsletter-btn {
+    border-radius: 50px !important;
+    padding: 10px 25px !important;
+    white-space: nowrap !important; /* YAZININ YAN YANA KALMASINI SAĞLAR */
+    flex-shrink: 0 !important;      /* Butonun küçülmesini engeller */
+}
+
+/* --- HOVER EFFECTS & ANIMATIONS --- */
+.bounce-on-hover:hover {
+  transform: translateY(-4px);
+}
+
+.favorite-card-hover:hover {
+  transform: translateY(-12px) scale(1.02);
+}
+
+.highlight-campaign {
+  background: linear-gradient(135deg, var(--text-brown) 0%, var(--bg-brown) 100%) !important;
+  animation: border-glow 3s infinite;
+}
+
+@keyframes border-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 193, 7, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(255, 193, 7, 0.5); }
+}
+
+.pulse-gift {
+  animation: gift-bounce 2s infinite;
+}
+
+@keyframes gift-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.pop-in-animation {
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+@keyframes popIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+.brush-stroke-hero {
+  background-image: url("data:image/svg+xml,%3Csvg width='384' height='401' viewBox='0 0 384 401' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.08' d='M237.91 3.51817C177.306 14.8687 114.736 29.5668 59.9079 48.016' stroke='%233e1b12' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+}
