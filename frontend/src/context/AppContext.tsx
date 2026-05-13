@@ -1,30 +1,61 @@
-import React, { createContext, useState, ReactNode } from 'react';
-import { Product, AppContextType } from '../types';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
 
-export const AppContext = createContext<AppContextType | undefined>(undefined);
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  description: string;
+  image?: string;
+}
+
+export interface AppContextType {
+  user: string | null;
+  stamps: number;
+  cart: Product[];
+  login: (name: string) => void;
+  logout: () => void;
+  addToCart: (item: Product) => void;
+  clearCart: () => void;
+  setStamps: (stamps: number) => void;
+  addStamp: () => void; // Hata veren eksik fonksiyonu buraya ekledik
+}
+
+export const AppContext = createContext<AppContextType | null>(null);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<string | null>(localStorage.getItem('user'));
   const [cart, setCart] = useState<Product[]>([]);
-  const [stamps, setStamps] = useState<number>(0);
+  const [stamps, setStamps] = useState<number>(Number(localStorage.getItem('stamps')) || 0);
 
-  const login = (username: string) => setUser(username);
-  const logout = () => { setUser(null); setCart([]); setStamps(0); };
-  
-  const addToCart = (item: Product) => setCart([...cart, item]);
+  useEffect(() => {
+    if (user) localStorage.setItem('user', user);
+    else localStorage.removeItem('user');
+    localStorage.setItem('stamps', stamps.toString());
+  }, [user, stamps]);
+
+  const login = (name: string) => setUser(name);
+  const logout = () => {
+    setUser(null);
+    setStamps(0);
+    localStorage.clear();
+  };
+
+  const addToCart = (item: Product) => setCart((prev) => [...prev, item]);
   const clearCart = () => setCart([]);
-
+  
+  // Bu fonksiyon Menu sayfasındaki hatayı engeller. 
+  // İçini boş bıraktık ki "sepete ekleyince pul artmasın" kuralın bozulmasın.
   const addStamp = () => {
-    if (stamps < 5) {
-      setStamps(prev => prev + 1);
-    } else {
-      setStamps(0);
-      alert("🎉 Tebrikler! 6 kahveyi tamamladın, bir sonraki kahven bizden BEDAVA!");
-    }
+    console.log("Stamp addition skipped (only allowed at checkout).");
   };
 
   return (
-    <AppContext.Provider value={{ user, login, logout, cart, addToCart, clearCart, stamps, addStamp }}>
+    <AppContext.Provider value={{ 
+      user, login, logout, 
+      cart, addToCart, clearCart, 
+      stamps, setStamps, addStamp // addStamp artık Context'te var!
+    }}>
       {children}
     </AppContext.Provider>
   );
