@@ -37,11 +37,11 @@ const Dashboard: React.FC = () => {
   };
 
   const previousOrders = [
-    { id: "#BB-1024", date: "May 10, 2026", items: "Latte, San Sebastian", total: "225 TL", status: "Completed" },
-    { id: "#BB-0985", date: "May 08, 2026", items: "Iced Americano", total: "75 TL", status: "Completed" },
-    { id: "#BB-0842", date: "May 05, 2026", items: "Caramel Macchiato, Brownie", total: "205 TL", status: "Completed" },
-    { id: "#BB-0712", date: "May 01, 2026", items: "Filter Coffee, Cheesecake", total: "155 TL", status: "Completed" },
-    { id: "#BB-0650", date: "April 28, 2026", items: "Mocha, Cookie", total: "130 TL", status: "Completed" },
+    { id: "#BB-1024", date: "May 10, 2026", items: "Latte, San Sebastian", total: "225 $", status: "Completed" },
+    { id: "#BB-0985", date: "May 08, 2026", items: "Iced Americano", total: "75 $", status: "Completed" },
+    { id: "#BB-0842", date: "May 05, 2026", items: "Caramel Macchiato, Brownie", total: "205 $", status: "Completed" },
+    { id: "#BB-0712", date: "May 01, 2026", items: "Filter Coffee, Cheesecake", total: "155 $", status: "Completed" },
+    { id: "#BB-0650", date: "April 28, 2026", items: "Mocha, Cookie", total: "130 $", status: "Completed" },
   ];
 
   const visibleOrders = showAll ? previousOrders : previousOrders.slice(0, 3);
